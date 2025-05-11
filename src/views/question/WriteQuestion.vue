@@ -66,7 +66,6 @@ import "codemirror/mode/pascal/pascal";
 import "codemirror/mode/clike/clike";
 import "codemirror/mode/python/python.js";
 import "codemirror/mode/fortran/fortran";
-import router from "@/router";
 
 interface Form {
   questionId: number;
@@ -111,20 +110,11 @@ const codeMirrorContainer = ref<HTMLElement | null>(null);
 let codeMirrorInstance: CodeMirror.Editor | null = null;
 
 const languages = [
-<<<<<<< HEAD
   { label: "C", value: "c" },
   { label: "C++", value: "cpp" },
   { label: "Java", value: "java" },
   { label: "Python", value: "py" },
   { label: "C#", value: "cs" },
-=======
-  { label: "C (Clang 10.0.1)", value: "c" },
-  { label: "C++ (Clang 9.0.1)", value: "cpp" },
-  { label: "Java (OpenJDK 14.0.1)", value: "java" },
-  { label: "Python for ML (3.7.7)", value: "py" },
-  { label: "C# (.NET Core SDK 3.1.406)", value: "cs" },
-  { label: "Visual Basic.Net (vbnc 0.0.0.5943)", value: "dn" },
->>>>>>> 63176bd29ad605ef1db311f9fe2a4fa42e2dd090
 ];
 
 const modeMap: Record<string, string> = {
@@ -163,7 +153,7 @@ const handleSubmit = async () => {
 };
 
 const handleLanguageChange = (
-  value: string | number | boolean | Record<string, any>
+  value: string | number | boolean | Record<string, unknown>
 ) => {
   if (typeof value === "string") {
     codeMirrorInstance?.setOption("mode", modeMap[value] || "clike");
@@ -212,7 +202,7 @@ onMounted(async () => {
     // 监听语言选择的变化并更新 CodeMirror 的模式
     watch(
       () => run.language,
-      (newLanguage) => {
+      () => {
         codeMirrorInstance?.setOption("mode", modeMap[run.language] || "clike");
       }
     );

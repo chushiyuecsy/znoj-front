@@ -14,7 +14,7 @@
     >
       <template #tags="{ record }">
         <a-space wrap>
-          <a-tag v-for="tag in record.tags" color="green">
+          <a-tag v-for="tag in record.tags" :key="tag" color="green">
             {{ tag }}
           </a-tag>
         </a-space>
@@ -74,17 +74,13 @@ onMounted(() => {
 });
 
 watchEffect(() => {
-<<<<<<< HEAD
   if (!isLoaded.value) {
     loadData();
     isLoaded.value = true;
   }
-=======
-  loadData();
->>>>>>> 63176bd29ad605ef1db311f9fe2a4fa42e2dd090
 });
 
-const onPageChange = (page: number, pageSize: number) => {
+const onPageChange = (page: number) => {
   searchParams.value.current = page;
   loadData();
 };

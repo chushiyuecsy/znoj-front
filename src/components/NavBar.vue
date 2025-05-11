@@ -28,15 +28,9 @@
         height="36px"
         v-if="
           store.state.user.isLogin &&
-<<<<<<< HEAD
           store.state.user.loginUser?.userAvatar !== ''
         "
         :src="store.state.user.loginUser.userAvatar"
-=======
-          store.state.user.loginUser.userAvatar == ''
-        "
-        :src="store.state.user.loginUser?.userAvatar"
->>>>>>> 63176bd29ad605ef1db311f9fe2a4fa42e2dd090
         :preview="false"
         flex="auto"
       />

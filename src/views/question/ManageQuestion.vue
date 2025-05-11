@@ -6,8 +6,7 @@
       :data="dataList"
       :pagination="{
         showTotal: true,
-<<<<<<< HEAD
-        size: searchParams.size,
+        pageSize: searchParams.size,
         current: searchParams.current,
         total,
       }"
@@ -24,18 +23,6 @@
           >
             <a-button status="danger">删除</a-button>
           </a-popconfirm>
-=======
-        pageSize: searchParams.pageSize,
-        current: searchParams.current,
-        total,
-      }"
-      @page-change="onPageChange"
-    >
-      <template #optional="{ record }">
-        <a-space>
-          <a-button type="primary" @click="doUpdate(record)">修改</a-button>
-          <a-button status="danger" @click="doDelete(record)">删除</a-button>
->>>>>>> 63176bd29ad605ef1db311f9fe2a4fa42e2dd090
         </a-space>
       </template>
       <template #createTime="{ record }">
@@ -53,18 +40,12 @@ import { onMounted, ref, watchEffect } from "vue";
 import { Question, QuestionControllerService } from "@/others/generated";
 import message from "@arco-design/web-vue/es/message";
 import { useRouter } from "vue-router";
-<<<<<<< HEAD
-import { Modal } from "@arco-design/web-vue";
-=======
-import moment from "moment";
->>>>>>> 63176bd29ad605ef1db311f9fe2a4fa42e2dd090
 
 const tableRef = ref();
 
 const dataList = ref([]);
 const total = ref(0);
 const searchParams = ref({
-<<<<<<< HEAD
   size: 10,
   current: 1,
 });
@@ -82,7 +63,7 @@ const loadData = async () => {
   }
 };
 
-const handlePageChange = (current: number, size: number) => {
+const handlePageChange = (current: number) => {
   searchParams.value.current = current; // 更新当前页码
   loadData(); // 重新加载数据
 };
@@ -92,10 +73,6 @@ const handlePageChange = (current: number, size: number) => {
  */
 onMounted(() => {
   loadData();
-=======
-  pageSize: 8,
-  current: 1,
->>>>>>> 63176bd29ad605ef1db311f9fe2a4fa42e2dd090
 });
 
 const columns = [
@@ -144,27 +121,9 @@ const doUpdate = (question: Question) => {
   });
 };
 
-const loadData = async () => {
-  const res = await QuestionControllerService.listQuestionByPageUsingPost(
-    searchParams.value
-  );
-  if (res.code === 0) {
-    dataList.value = res.data.records;
-    total.value = res.data.total;
-  } else {
-    message.error("加载失败，" + res.message);
-  }
-};
-
 watchEffect(() => {
   loadData();
 });
-
-const onPageChange = (page: number, pageSize: number) => {
-  searchParams.value.current = page;
-  loadData();
-};
-
 /**
  * 页面加载时，请求数据
  */
