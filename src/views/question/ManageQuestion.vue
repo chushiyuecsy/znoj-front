@@ -26,7 +26,7 @@
         </a-space>
       </template>
       <template #createTime="{ record }">
-        {{ moment(record.createTime).format("YYYY年MM月DD日") }}
+        {{ moment(record.createTime).format("YYYY年MM月DD日HH:mm:ss") }}
       </template>
       <template #acInSubmit="{ record }">
         {{ record.acceptedNum + "/" + record.submitNum }}
@@ -40,6 +40,7 @@ import { onMounted, ref, watchEffect } from "vue";
 import { Question, QuestionControllerService } from "@/others/generated";
 import message from "@arco-design/web-vue/es/message";
 import { useRouter } from "vue-router";
+import moment from "moment";
 
 const tableRef = ref();
 

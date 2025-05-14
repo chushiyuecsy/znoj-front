@@ -28,8 +28,11 @@ import { onMounted, ref, watchEffect } from "vue";
 import { RunListControllerService, RunSubmitVO } from "@/others/generated";
 import message from "@arco-design/web-vue/es/message";
 import { useRouter } from "vue-router";
+import moment from "moment/moment";
 
 const tableRef = ref();
+
+let isLoading = ref(false);
 
 const dataList = ref([]);
 const total = ref(0);
@@ -42,6 +45,7 @@ const loadData = async () => {
   const res = await RunListControllerService.listRunSubmitByPageUsingPost(
     searchParams.value
   );
+  isLoading.value = false;
   const code2str = (code: number) => {
     switch (code) {
       case 1:
@@ -78,6 +82,7 @@ const loadData = async () => {
     dataList.value = res.data.records.map((i) => ({
       runId: i.runId,
       questionId: i.questionId,
+      submitTime: moment(i.submitTime).format("YYYY年MM月DD日HH:mm:ss"),
       userId: i.userId,
       codeLength: i.codeLength,
       language: i.language,
@@ -112,6 +117,10 @@ const columns = [
   {
     title: "题目",
     dataIndex: "questionId",
+  },
+  {
+    title: "提交时间",
+    dataIndex: "submitTime",
   },
   {
     title: "提交用户",
@@ -154,9 +163,9 @@ const handleCode = (runSubmit: RunSubmitVO) => {
   });
   window.open(routeData.href, "_blank");
 };
-watchEffect(() => {
-  loadData();
-});
+// watchEffect(() => {
+//   loadData();
+// });
 
 const onPageChange = (page: number, pageSize: number) => {
   searchParams.value.current = page;

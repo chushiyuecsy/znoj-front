@@ -107,7 +107,7 @@ const doMenuClick = (key: string) => {
 
   &:hover {
     cursor: pointer;
-    background-color: #fff;
+    background-color: #cfcfcf;
   }
 }
 

@@ -29,25 +29,4 @@ export class RunListControllerService {
             },
         });
     }
-    /**
-     * refreshRunSubmitByPage
-     * @param runSubmitQueryRequest runSubmitQueryRequest
-     * @returns string OK
-     * @returns any Created
-     * @throws ApiError
-     */
-    public static refreshRunSubmitByPageUsingPost(
-        runSubmitQueryRequest: RunSubmitQueryRequest,
-    ): CancelablePromise<string | any> {
-        return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/status/refresh',
-            body: runSubmitQueryRequest,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
-        });
-    }
 }

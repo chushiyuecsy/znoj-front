@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <template v-if="route.path.startsWith('/user')">
+      <!--    <template>-->
       <router-view />
     </template>
     <template v-else>
+      <!--    <template>-->
       <BasicLayout />
     </template>
   </div>

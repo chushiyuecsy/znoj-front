@@ -9,13 +9,13 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class RunSubmitControllerService {
     /**
-     * doOneRunSubmit
+     * postOneRunSubmit
      * @param runSubmitAddRequest runSubmitAddRequest
      * @returns BaseResponse_long_ OK
      * @returns any Created
      * @throws ApiError
      */
-    public static doOneRunSubmitUsingPost(
+    public static postOneRunSubmitUsingPost(
         runSubmitAddRequest: RunSubmitAddRequest,
     ): CancelablePromise<BaseResponse_long_ | any> {
         return __request(OpenAPI, {

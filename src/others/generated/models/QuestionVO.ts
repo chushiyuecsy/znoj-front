@@ -2,15 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { JudgeCase } from './JudgeCase';
 import type { JudgeConfig } from './JudgeConfig';
 import type { UserVO } from './UserVO';
-import { JudgeCase } from "@/others/generated";
 export type QuestionVO = {
     acceptedNum?: number;
     content?: string;
     createTime?: string;
-    judgeConfig?: JudgeConfig;
     judgeCase?: Array<JudgeCase>;
+    judgeConfig?: JudgeConfig;
     questionId?: number;
     submitNum?: number;
     tags?: Array<string>;

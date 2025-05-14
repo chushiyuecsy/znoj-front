@@ -2,12 +2,10 @@ import { RouteRecordRaw } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import NoAuth from "@/views/NoAuth.vue";
 import ACCESS_ENUM from "@/access/accessEnum";
-import UserLayout from "@/layouts/UserLayout.vue";
 import UserLogin from "@/views/user/UserLogin.vue";
 import UserRegister from "@/views/user/UserRegister.vue";
 import UserProfile from "@/views/user/UserProfile.vue";
 import UpdateQuestion from "@/views/question/UpdateQuestion.vue";
-import ExampleView from "@/views/ExampleView.vue";
 import AddQuestion from "@/views/question/AddQuestion.vue";
 import ManageQuestion from "@/views/question/ManageQuestion.vue";
 import WriteQuestion from "@/views/question/WriteQuestion.vue";
@@ -74,30 +72,21 @@ export const routes: Array<RouteRecordRaw> = [
     props: (route) => ({ id: route.query.id }),
   },
   {
-    path: "/user",
-    name: "用户",
-    component: UserLayout,
-    children: [
-      {
-        path: "/user/login",
-        name: "用户登录",
-        component: UserLogin,
-        meta: {
-          access: ACCESS_ENUM.GUEST,
-        },
-      },
-      {
-        path: "/user/register",
-        name: "用户注册",
-        component: UserRegister,
-        meta: {
-          access: ACCESS_ENUM.GUEST,
-        },
-      },
-    ],
+    path: "/user/login",
+    name: "用户登录",
+    component: UserLogin,
     meta: {
-      hideInMenu: true,
       access: ACCESS_ENUM.GUEST,
+      hideInMenu: true,
+    },
+  },
+  {
+    path: "/user/register",
+    name: "用户注册",
+    component: UserRegister,
+    meta: {
+      access: ACCESS_ENUM.GUEST,
+      hideInMenu: true,
     },
   },
   {

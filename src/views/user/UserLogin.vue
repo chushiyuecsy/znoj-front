@@ -26,11 +26,11 @@
       </a-form>
       <a-divider></a-divider>
       <a-row align="center">
-        <a-col :span="16" align="center"></a-col>
-        <a-col :span="4" align="center">
+        <a-col :span="16"></a-col>
+        <a-col :span="4">
           <a-link href="/user/register" style="width: 120px">注册</a-link>
         </a-col>
-        <a-col :span="4" align="center">
+        <a-col :span="4">
           <a-link href="https://www.qrz.com/db/bg9joi" style="width: 120px">
             联系我
           </a-link>
@@ -47,23 +47,24 @@ import { UserControllerService, UserLoginRequest } from "@/others/generated";
 // 引入hashcode.ts中的encryptPassword方法
 import { encryptPassword } from "@/utils/hashcode";
 import { useRouter } from "vue-router";
-import { useStore } from "vuex";
 
 const router = useRouter();
-const store = useStore();
 
 const form = reactive({
   userAccount: "",
   userPassword: "",
 } as UserLoginRequest);
 const handleSubmit = async () => {
-  form.userPassword = encryptPassword(
-    form.userPassword + "7458329fn6dio7awyuratghukreasjghklajrsetehailuw"
+  const res = await UserControllerService.userLoginUsingPost(
+    reactive({
+      userAccount: form.userAccount,
+      userPassword: encryptPassword(
+        form.userPassword + "7458329fn6dio7awyuratghukreasjghklajrsetehailuw"
+      ),
+    } as UserLoginRequest)
   );
-  const res = await UserControllerService.userLoginUsingPost(form);
   if (res.code === 0) {
     message.success("登录成功");
-    // await store.dispatch("user/getLoginUser");
     router.push({
       path: "/",
       replace: true,

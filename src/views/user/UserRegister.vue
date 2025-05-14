@@ -57,13 +57,18 @@ const form = reactive({
 } as UserRegisterRequest);
 
 const handleSubmit = async () => {
-  form.userPassword = encryptPassword(
-    form.userPassword + "7458329fn6dio7awyuratghukreasjghklajrsetehailuw"
+  const res = await UserControllerService.userRegisterUsingPost(
+    reactive({
+      userAccount: form.userAccount,
+      userName: form.userAccount,
+      userPassword: encryptPassword(
+        form.userPassword + "7458329fn6dio7awyuratghukreasjghklajrsetehailuw"
+      ),
+      checkPassword: encryptPassword(
+        form.checkPassword + "7458329fn6dio7awyuratghukreasjghklajrsetehailuw"
+      ),
+    } as UserRegisterRequest)
   );
-  form.checkPassword = encryptPassword(
-    form.checkPassword + "7458329fn6dio7awyuratghukreasjghklajrsetehailuw"
-  );
-  const res = await UserControllerService.userRegisterUsingPost(form);
   if (res.code === 0) {
     message.success("注册成功, " + res.message);
     await store.dispatch("user/getLoginUser");

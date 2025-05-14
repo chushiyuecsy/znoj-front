@@ -14,7 +14,7 @@
     >
       <template #tags="{ record }">
         <a-space wrap>
-          <a-tag v-for="tag in record.tags" :key="tag" color="green">
+          <a-tag v-for="tag in record.tags" color="green">
             {{ tag }}
           </a-tag>
         </a-space>
@@ -80,7 +80,7 @@ watchEffect(() => {
   }
 });
 
-const onPageChange = (page: number) => {
+const onPageChange = (page: number, pageSize: number) => {
   searchParams.value.current = page;
   loadData();
 };

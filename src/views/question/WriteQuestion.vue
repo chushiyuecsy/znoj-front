@@ -141,7 +141,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    const res = await RunSubmitControllerService.doOneRunSubmitUsingPost(run);
+    const res = await RunSubmitControllerService.postOneRunSubmitUsingPost(run);
     if (res.code === 0) {
       message.success("提交成功");
     } else {
