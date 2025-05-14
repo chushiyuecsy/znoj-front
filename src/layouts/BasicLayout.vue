@@ -9,7 +9,8 @@
       </a-layout-content>
       <a-layout-content class="footer">
         狗哥的毕设项目 ZNOJ在线判题系统 by
-        <a href="https://gitee.com/zhao-ning123">程序员狗哥</a>
+        <a href="https://github.com/Chushiyuecsy"> 程序员狗哥 </a>
+        <a href="https://gitee.com/zhao-ning123"> Gitee </a>
       </a-layout-content>
     </a-layout>
   </div>
